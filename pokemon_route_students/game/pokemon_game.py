@@ -84,8 +84,8 @@ class PokemonGame:
                     self.pokemon_starter_types, room[5])
 
                 prob_of_win = calculate_prob(level_input, effect_input)
-                # print(f"level_input: {level_input} effect_input: {effect_input}")
-                # print("Possible Room:", room, "Probability of win:", prob_of_win)
+                print(f"level_input: {level_input} effect_input: {effect_input}")
+                print("Possible Room:", room, "Probability of win:", prob_of_win)
 
                 if prob_of_win > best_prob:
                     best_prob = prob_of_win
