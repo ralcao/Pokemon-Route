@@ -4,13 +4,20 @@
 
 player_starts(0,0).
 
-% get_pokemon_at(Matriz, X, Y, ParIdLevel)
-    get_pokemon_at(Matriz, X, Y, (Id, Level)) :-
-        % 1. Extrair a Linha 'Y' da 'Matriz' e guardá-la numa variável (ex: LinhaAtual)
-        nth0(Y, Matriz, LinhaAtual),
+obtem_elemento(0,[H|_], H).
 
-        % 2. Extrair a Coluna 'X' dessa 'LinhaAtual' e guardá-la em (Id, Level)
-        nth0(X, Matriz, (Id, Level)).
+obtem_elemento(N, [_|T], Elemento) :-
+    N > 0,
+    N1 is N - 1,
+    obtem_elemento(N1, T, Elemento).
+
+% get_pokemon_at(Matriz, X, Y, ParIdLevel)
+get_pokemon_at(Matriz, X, Y, (Id, Level)) :-
+    % 1. Extrair a Linha 'Y' da 'Matriz'
+    obtem_elemento(Y, Matriz, LinhaAtual),
+
+    % 2. Extrair a Coluna 'X' dessa 'LinhaAtual'
+    obtem_elemento(X, LinhaAtual, (Id, Level)).
 
 % get_vizinho(X, Y, X1, Y1)
     get_vizinho(X, Y, X, Y1) :- Y1 is Y - 1. % Cima
