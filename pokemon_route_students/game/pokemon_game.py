@@ -4,7 +4,7 @@ from game.pokemon_fuzzy import calculate_prob
 
 class PokemonGame:
 
-    def __init__(self, prolog_file="prolog/pokemon_game.pl", starter_id=1, starter_level=4):
+    def __init__(self, prolog_file="prolog/pokemon_game.pl", starter_id=1, starter_level=6):
         self.prolog = Prolog()
         self.prolog.consult(prolog_file)
 
