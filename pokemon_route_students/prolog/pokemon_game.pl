@@ -6,6 +6,8 @@ player_starts(0,0).
 
 obtem_elemento(0,[H|_], H).
 
+%funcao para obter obtem_elemento
+
 obtem_elemento(N, [_|T], Elemento) :-
     N > 0,
     N1 is N - 1,
