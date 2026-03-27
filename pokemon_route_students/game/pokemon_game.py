@@ -4,7 +4,7 @@ from game.pokemon_fuzzy import calculate_prob
 
 class PokemonGame:
 
-    def __init__(self, prolog_file="prolog/pokemon_game.pl", starter_id=1, starter_level=6):
+    def __init__(self, prolog_file="prolog/pokemon_game.pl", starter_id=1, starter_level=4):
         self.prolog = Prolog()
         self.prolog.consult(prolog_file)
 
@@ -45,11 +45,11 @@ class PokemonGame:
             # 3. Testar o tipo de ataque escolhido contra todos os tipos do defensor
             for tipo_defesa in defender_types:
 
-                # CORREÇÃO: Adicionadas aspas simples '' à volta das variáveis para o Prolog ler como Átomos puros
+
                 query = f"attack('{tipo_ataque}', '{tipo_defesa}', Effect)"
                 resultado = list(self.prolog.query(query))
 
-                # DEBUG: Isto vai mostrar no terminal o que o Prolog está a responder!
+                # DEBUG: Mostrar no terminal resposta do prolog
                 print(f"  -> A perguntar ao Prolog: {query} | Resposta: {resultado}")
 
                 if resultado:
