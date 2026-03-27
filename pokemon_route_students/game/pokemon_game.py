@@ -34,9 +34,38 @@ class PokemonGame:
 
     def total_attack(self, attacker_types, defender_types):
 
-        # TO DO
+        # 1. Começamos com um valor negativo para garantir que é substituído
+        melhor_efeito_final = -1.0
 
-        return 0
+        # 2. Iterar sobre cada tipo de ataque do nosso Pokémon
+        for tipo_ataque in attacker_types:
+
+            efeito_combinado = 1.0
+
+            # 3. Testar o tipo de ataque escolhido contra todos os tipos do defensor
+            for tipo_defesa in defender_types:
+
+                # Consultar o Prolog: "Qual é o efeito do tipo_ataque contra o tipo_defesa?"
+                # PySwip devolve uma lista de dicionários. Ex: [{'Effect': 0.5}]
+                query = f"attack({tipo_ataque}, {tipo_defesa}, Effect)"
+                resultado = list(self.prolog.query(query))
+
+                if resultado:
+                    # Extraímos o valor do efeito e garantimos que é um número decimal (float)
+                    efeito = float(resultado[0]['Effect'])
+
+                    # Multiplicamos o efeito combinado
+                    efeito_combinado = efeito_combinado * efeito
+                else:
+                    # Prevenção de erro: se por acaso faltar algum facto no Prolog,
+                    # assumimos que o ataque é neutro (multiplica por 1)
+                    efeito_combinado = efeito_combinado * 1.0
+
+            # 4. Depois de testar este ataque contra todas as defesas, vemos se é o melhor
+            if efeito_combinado > melhor_efeito_final:
+                melhor_efeito_final = efeito_combinado
+
+        return melhor_efeito_final
 
     # --------------------------------
 
