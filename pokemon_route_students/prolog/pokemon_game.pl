@@ -44,4 +44,4 @@ get_pokemon_at(Matriz, X, Y, (Id, Level)) :-
         route(M),
 
         % 2. Encontra todos os vizinhos válidos e guarda-os na lista Rooms
-        findall(SalaVizinha, vizinho_valido(M, X, Y, SalaVizinha), Rooms).
+        findall
